@@ -22,6 +22,7 @@ def create_app():
 @main.route("/")
 def index():
     print("entering index()")
+    load_match_data()
     return render_template("index.html")
 
 @main.route("/search")
