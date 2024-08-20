@@ -1,0 +1,54 @@
+<!-- Player Table Header -->
+<tr>
+    <th><b>  Player Name       </b></th>
+    <th><b>  Rank              </b></th>
+    <th><b>  Clay Winrate      </b></th>
+    <th><b>  Grass Winrate     </b></th>
+    <th><b>  Hardcourt Winrate </b></th>
+    <th><b>  Total Winrate     </b></th>
+</tr>
+<!-- Player Table Body -->
+<tr>
+    <td>    {{playerresult.name}}                                               </td>
+    <td>    {{playerresult.rank}}                                               </td>
+    <td>    {{playerresult.cw}}/{{playerresult.c}}   = {{playerresult.cwrate}}  </td>
+    <td>    {{playerresult.gw}}/{{playerresult.g}}   = {{playerresult.gwrate}}  </td>
+    <td>    {{playerresult.hcw}}/{{playerresult.hc}} = {{playerresult.hcwrate}} </td>
+    <td>    {{playerresult.tw}}/{{playerresult.tm}} = {{playerresult.wrate}}    </td>
+</tr>
+<!-- Padding Between Player Table above and Match Table Below -->
+<tr>
+    <th></th>
+</tr>
+<!-- Match Table Header -->
+<tr>
+    <th>    Tournament Name </th>
+    <th>    Date            </th>
+    <th>    Surface         </th>
+    <th>    Match #         </th>
+    <th>    Winner          </th>
+    <th>    Loser           </th>
+    <th>    Score           </th>
+</tr>
+<!-- Match Table Body -->
+{% for result in results %}
+<tr>
+    <td>{{ result.tourney_name }}</td>
+    <td>{{result.tourney_date}}</td>
+    <td>{{ result.surface }}</td>
+    <td>{{ result.match_num }}</td>
+    
+    {% if(playerresult.name == result.winner_name): %}
+        <td><u>{{ result.winner_name }}</u></td>
+    {% else: %}
+        <td>{{ result.winner_name }}</td>
+    {% endif %}
+
+    {% if(playerresult.name == result.loser_name): %}
+        <td><u>{{ result.loser_name }}</u></td>
+    {% else: %}
+        <td>{{ result.loser_name }}</td>
+    {% endif %}
+    <td>{{ result.score }}</td>
+</tr>
+{% endfor %}
